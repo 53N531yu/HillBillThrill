@@ -8,7 +8,11 @@ public class PlayerHealth : MonoBehaviour
 {
     public float health = 10f;
     public bool enemyHit = false;
+    public EnemySpawner enemyDifficulty;
 
+    public LayerMask enemyLayer;
+
+    public Transform enemyCheck;
     
     public Image healthBar;
     public float damage;
@@ -36,14 +40,32 @@ public class PlayerHealth : MonoBehaviour
             Time.timeScale = 0f;
             gameOver.SetActive(true);
         }
+
+        if (IsAttacked())
+        {
+            if (health > 0) health -= 2f * Time.deltaTime;
+            healthBar.fillAmount = health / 20f;
+        }
     }
 
     public void Restart()
     {
         gameOver.SetActive(false);
-        health = 10f;
+        health = 20f;
         healthBar.fillAmount = 10f;
         Time.timeScale = 1f;
+        enemyDifficulty.difficulty = 1;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject enemy in enemies)
+            GameObject.Destroy(enemy);
+
+        GameObject[] upgrades = GameObject.FindGameObjectsWithTag("Ecstasy");
+        foreach(GameObject upgrade in upgrades)
+            GameObject.Destroy(upgrade);
+
+        enemyDifficulty.enemiesLeft = enemyDifficulty.difficulty;
+        enemyDifficulty.createWave(enemyDifficulty.difficulty);
+        enemyDifficulty.score = 0;
     }
 
     public IEnumerator Damaged()
@@ -56,15 +78,19 @@ public class PlayerHealth : MonoBehaviour
         canDamage = true;
     }
 
-    public void OnTriggerStay2D(Collider2D col)
+    public bool IsAttacked()
     {
-        if (col.tag == "Enemy") 
-        {
-            if (health > 0) health -= 2f * Time.deltaTime;
-            healthBar.fillAmount = health / 20f;
-            Debug.Log("Hello???");
-        }
+        return Physics2D.OverlapCircle(enemyCheck.position, 0.2f, enemyLayer);
     }
+
+    // public void OnTriggerStay2D(Collider2D col)
+    // {
+    //     if (col.tag == "Enemy") 
+    //     {
+    //         if (health > 0) health -= 2f * Time.deltaTime;
+    //         healthBar.fillAmount = health / 20f;
+    //     }
+    // }
 
     public void TakeDamage(float amount){
         health -= amount;

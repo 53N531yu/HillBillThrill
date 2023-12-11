@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5824386774243367191}
   m_Layer: 0
   m_Name: Upgrade
-  m_TagString: Untagged
+  m_TagString: Ecstasy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,3 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f13099b0411c1a1439cfcfd87ff208f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tree: {fileID: 0}

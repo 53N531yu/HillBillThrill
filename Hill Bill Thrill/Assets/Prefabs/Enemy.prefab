@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 2087182725420564444}
   - component: {fileID: 7565449821607271448}
   - component: {fileID: 1654696594215111238}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9e7f833e7faa45d78f7651311f234d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  enemyHealth: 10
   player: {fileID: 0}
   explosion: {fileID: 4855857076219749056, guid: b49ff37495ad99f4f8ee2a3d6f1eb358, type: 3}
 --- !u!50 &2087182725420564444

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float health = 10f;
+    public float enemyHealth = 10f;
     public GameObject player;
     public GameObject explosion;
     TrailRenderer trail;
@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-        if (health <= 0)
+        if (enemyHealth <= 0)
         {
             EnemySpawner.Instance.score += 500; //add score
 
@@ -47,13 +47,21 @@ public class Enemy : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D col)
     {
-        if (col.tag == "Flames") if (health > 0)
-            {
-                health -= 5f * Time.deltaTime;
+        if (col.tag == "Flames") if (enemyHealth > 0)
+        {
+            enemyHealth -= 5f * Time.deltaTime;
 
-                StopCoroutine(flash());
-                StartCoroutine(flash());
-            }
+            StopCoroutine(flash());
+            StartCoroutine(flash());
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Tree") if (enemyHealth > 0)
+        {
+            Destroy(gameObject);
+        }
     }
     //damage flash
     IEnumerator flash()

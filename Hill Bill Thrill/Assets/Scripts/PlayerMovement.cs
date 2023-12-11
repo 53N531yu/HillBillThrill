@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
+            StartCoroutine(FlameOff());
             flameCollider.enabled = false;
             emission.rateOverTime = 0;
         }
@@ -54,5 +55,11 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(0.25f);
         flameCollider.enabled = true;
+    }
+
+    public IEnumerator FlameOff()
+    {
+        yield return new WaitForSeconds(0.26f);
+        flameCollider.enabled = false;
     }
 }

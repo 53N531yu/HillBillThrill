@@ -53,7 +53,7 @@ public class EnemySpawner : MonoBehaviour
         scoreUI.SetText(score.ToString());
     }
 
-    void createWave(int enemiestoSpawn)
+    public void createWave(int enemiestoSpawn)
     {
         //spawns upgrade every 10 waves
         if(difficulty % 5 == 0)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Upgrade : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public TreeScript tree;
     void Start()
     {
         
@@ -22,7 +22,7 @@ public class Upgrade : MonoBehaviour
             {
 
             Debug.Log("noob");
-            //StartCoroutine(EnemySpawner.Instance.traildecay());
+            tree.treeEnabled = true;
             EnemySpawner.Instance.traildecaywrapper();
             Destroy(this.gameObject);
         }
