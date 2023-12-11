@@ -23,8 +23,9 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0)
         {
-            Destroy(gameObject);
-            //EnemySpawner.Instance.enemiesLeft--;
+            EnemySpawner.Instance.score += 500; //add score
+
+            Destroy(gameObject);        //destroy enemy
             EnemySpawner.Instance.reduce();
 
             Instantiate(explosion, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
@@ -49,6 +50,7 @@ public class Enemy : MonoBehaviour
         if (col.tag == "Flames") if (health > 0)
             {
                 health -= 5f * Time.deltaTime;
+
                 StopCoroutine(flash());
                 StartCoroutine(flash());
             }

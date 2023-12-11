@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -17,6 +18,9 @@ public class EnemySpawner : MonoBehaviour
     public TrailRenderer trail;
 
     public bool enemytrailactive = false;
+
+    public TMP_Text scoreUI;
+    public float score = 0;
 
     private void Awake()
     {
@@ -46,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
             createWave(difficulty);
         }
 
-
+        scoreUI.SetText(score.ToString());
     }
 
     void createWave(int enemiestoSpawn)

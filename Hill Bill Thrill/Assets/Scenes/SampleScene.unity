@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &88537887 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2365921897917558293, guid: e87ab76afc27b4b34a430fd5e43ab4bb, type: 3}
+  m_PrefabInstance: {fileID: 535730759}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &366587189 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7585636801016505838, guid: 4fd48faa49a4dec4e9d0b22b45de24ac, type: 3}
@@ -458,6 +469,8 @@ MonoBehaviour:
   enemyspeed: 4
   trail: {fileID: 1912750109}
   enemytrailactive: 0
+  scoreUI: {fileID: 88537887}
+  score: 0
 --- !u!4 &1482460310
 Transform:
   m_ObjectHideFlags: 0
