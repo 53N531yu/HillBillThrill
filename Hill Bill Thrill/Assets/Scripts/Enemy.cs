@@ -8,16 +8,25 @@ public class Enemy : MonoBehaviour
 {
     public float health = 10f;
     public GameObject player;
+    public GameObject explosion;
     public float speed;
     SpriteRenderer spriteRenderer;
 
     private void Start()
     {
+        player = GameObject.Find("Player");
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
-        if (health <= 0) Destroy(gameObject);
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+            //EnemySpawner.Instance.enemiesLeft--;
+            EnemySpawner.Instance.reduce();
+
+            Instantiate(explosion, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
+        }
         
         chase();
     }
@@ -29,7 +38,6 @@ public class Enemy : MonoBehaviour
                 health -= 5f * Time.deltaTime;
                 StopCoroutine(flash());
                 StartCoroutine(flash());
-
             }
     }
     //damage flash
