@@ -7,7 +7,7 @@ public class Upgrade : MonoBehaviour
     public TreeScript tree;
     void Start()
     {
-        
+        tree = EnemySpawner.Instance.player.GetComponent<TreeScript>();
     }
 
     // Update is called once per frame

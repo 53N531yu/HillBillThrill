@@ -24,11 +24,10 @@ public class Enemy : MonoBehaviour
         if (enemyHealth <= 0)
         {
             EnemySpawner.Instance.score += 500; //add score
+            EnemySpawner.Instance.reduce();
+            Instantiate(explosion, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
 
             Destroy(gameObject);        //destroy enemy
-            EnemySpawner.Instance.reduce();
-
-            Instantiate(explosion, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
         }
         
         chase();
@@ -60,7 +59,7 @@ public class Enemy : MonoBehaviour
     {
         if (col.tag == "Tree") if (enemyHealth > 0)
         {
-            Destroy(gameObject);
+                enemyHealth = 0;
         }
     }
     //damage flash

@@ -55,8 +55,11 @@ public class EnemySpawner : MonoBehaviour
 
     public void createWave(int enemiestoSpawn)
     {
+        Debug.Log("spawning wave");
+        Debug.Log("enemiestospawn is " + enemiestoSpawn);
+
         //spawns upgrade every 10 waves
-        if(difficulty % 5 == 0)
+        if (difficulty % 5 == 0)
         {
             float x = Random.Range(-25, 25);
             float y = Random.Range(-25, 25);
