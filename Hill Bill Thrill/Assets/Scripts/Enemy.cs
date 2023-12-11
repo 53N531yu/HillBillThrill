@@ -9,13 +9,15 @@ public class Enemy : MonoBehaviour
     public float health = 10f;
     public GameObject player;
     public GameObject explosion;
-    public float speed;
+    TrailRenderer trail;
     SpriteRenderer spriteRenderer;
+
 
     private void Start()
     {
         player = GameObject.Find("Player");
         spriteRenderer = GetComponent<SpriteRenderer>();
+        trail = GetComponent<TrailRenderer>();
     }
     void Update()
     {
@@ -29,6 +31,17 @@ public class Enemy : MonoBehaviour
         }
         
         chase();
+
+        if (EnemySpawner.Instance.enemytrailactive == true)
+        {
+            trail.emitting = true;
+        }
+        else
+        {
+            trail.emitting = false;
+            trail.Clear();
+        }
+        
     }
 
     public void OnTriggerStay2D(Collider2D col)
@@ -53,6 +66,6 @@ public class Enemy : MonoBehaviour
     private void chase()
     {
         //transform.LookAt(player.transform.position);
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, EnemySpawner.Instance.enemyspeed * Time.deltaTime);
     }
 }

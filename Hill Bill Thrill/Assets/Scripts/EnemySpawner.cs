@@ -9,9 +9,14 @@ public class EnemySpawner : MonoBehaviour
 
     public GameObject player;
     public GameObject enemy;
+    public GameObject upgrade;
     public int difficulty=1;
     public int enemiesLeft=1;
 
+    public float enemyspeed = 4;
+    public TrailRenderer trail;
+
+    public bool enemytrailactive = false;
 
     private void Awake()
     {
@@ -28,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        trail.enabled = false;
     }
 
     // Update is called once per frame
@@ -40,10 +45,21 @@ public class EnemySpawner : MonoBehaviour
             enemiesLeft = difficulty;
             createWave(difficulty);
         }
+
+
     }
 
     void createWave(int enemiestoSpawn)
     {
+        //spawns upgrade every 10 waves
+        if(difficulty % 5 == 0)
+        {
+            float x = Random.Range(-25, 25);
+            float y = Random.Range(-25, 25);
+            Instantiate(upgrade, new Vector2(x, y), Quaternion.identity);
+        }
+
+        //spawns enemies
         for(int i = 0; i < enemiestoSpawn; i++)
         {
             float x = Random.Range(-25, 25);
@@ -59,5 +75,27 @@ public class EnemySpawner : MonoBehaviour
     {
         //Debug.Log("reduce works");
         enemiesLeft--;
+    }
+
+
+    //add upgrade effects here
+    //rn it sets trails for everyone and reduces enemy speed for 10 seconds
+    public IEnumerator traildecay()
+    {
+        //
+        trail.Clear();
+        trail.enabled = true;
+        enemytrailactive = true;
+        EnemySpawner.Instance.enemyspeed = 1f;
+
+        yield return new WaitForSeconds(10);
+        trail.enabled = false;
+        enemytrailactive = false;
+        EnemySpawner.Instance.enemyspeed = 5f;
+    }
+
+    public void traildecaywrapper()
+    {
+        StartCoroutine(traildecay());
     }
 }
