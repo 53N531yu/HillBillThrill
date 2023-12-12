@@ -22,7 +22,10 @@ public class EnemySpawner : MonoBehaviour
     public TMP_Text scoreUI;
     public float score = 0;
 
-
+    public AudioSource audioSource;
+    public AudioSource audioSourceoof;
+    public AudioClip death;
+    public AudioClip oof;
 
     private void Awake()
     {
@@ -106,5 +109,17 @@ public class EnemySpawner : MonoBehaviour
     public void traildecaywrapper()
     {
         StartCoroutine(traildecay());
+    }
+
+    public void deathsound()
+    {
+        audioSource.clip = death;
+        audioSource.Play();
+    }
+
+    public void oofsound()
+    {
+        audioSourceoof.clip = oof;
+        audioSourceoof.Play();
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     {
         if (enemyHealth <= 0)
         {
-
+            EnemySpawner.Instance.deathsound();
             EnemySpawner.Instance.score += 500; //add score
             EnemySpawner.Instance.reduce();
             Instantiate(explosion, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
@@ -51,6 +51,8 @@ public class Enemy : MonoBehaviour
         {
             enemyHealth -= 5f * Time.deltaTime;
 
+            EnemySpawner.Instance.oofsound();
+
             StopCoroutine(flash());
             StartCoroutine(flash());
         }
@@ -60,6 +62,7 @@ public class Enemy : MonoBehaviour
     {
         if (col.tag == "Tree") if (enemyHealth > 0)
         {
+                EnemySpawner.Instance.oofsound();
                 enemyHealth = 0;
         }
     }
