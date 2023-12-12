@@ -22,6 +22,8 @@ public class EnemySpawner : MonoBehaviour
     public TMP_Text scoreUI;
     public float score = 0;
 
+
+
     private void Awake()
     {
         if (Instance != null && Instance != this)

@@ -12,7 +12,6 @@ public class Enemy : MonoBehaviour
     TrailRenderer trail;
     SpriteRenderer spriteRenderer;
 
-
     private void Start()
     {
         player = GameObject.Find("Player");
@@ -23,9 +22,11 @@ public class Enemy : MonoBehaviour
     {
         if (enemyHealth <= 0)
         {
+
             EnemySpawner.Instance.score += 500; //add score
             EnemySpawner.Instance.reduce();
             Instantiate(explosion, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
+
 
             Destroy(gameObject);        //destroy enemy
         }

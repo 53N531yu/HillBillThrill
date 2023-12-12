@@ -104,6 +104,8 @@ MonoBehaviour:
   enemyHealth: 10
   player: {fileID: 0}
   explosion: {fileID: 4855857076219749056, guid: b49ff37495ad99f4f8ee2a3d6f1eb358, type: 3}
+  audioSource: {fileID: 1676583539333189153, guid: 56ed440205071e946b1b10755fd63103, type: 3}
+  death: {fileID: 8300000, guid: 43f0ee921d0f04c43940038309fd5214, type: 3}
 --- !u!50 &2087182725420564444
 Rigidbody2D:
   serializedVersion: 4

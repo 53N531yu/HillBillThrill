@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public PolygonCollider2D flameCollider;
     public ParticleSystem flameParticles;
     private Vector3 mousePos;
+    public AudioSource audioSource;
+    public AudioClip fire;
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -42,12 +44,17 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(FlameOn());
             emission.rateOverTime = 50;
+
+            audioSource.clip = fire;
+            audioSource.Play();
+            audioSource.loop = true;
         }
         else if (Input.GetMouseButtonUp(0))
         {
             StartCoroutine(FlameOff());
             flameCollider.enabled = false;
             emission.rateOverTime = 0;
+            audioSource.loop = false;
         }
     }
 
